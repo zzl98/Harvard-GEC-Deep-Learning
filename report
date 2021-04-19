@@ -1,0 +1,37 @@
+# Instructor: Pavlos Protopapas	TFs : Patrick Ohiomoba, Srivatsan Srinivasan
+
+# Group Members: Ying Yi, Yunfan He, Zhilin Zhang, Shengcheng Yu, Haoyue Du
+
+
+
+# Introduction
+This work is part of the homework for the online GEC Deep Learning course, offered by Dr. Pavlos Protopapas, TF Patrick Ohiomoba and Srivatsan Srinivasan. From this work, we hope to have better grasp of Autoencoders and GANs, as well as experimenting with mixing Convolutional Autoencoders, VAE and DCGANs.
+
+The project used several neural network structures related with VAEs and GANs. Variational autoencoders (VAEs) were defined in 2013 by Kingma et al. and Rezende et al.. GANs were introduced in a paper by Ian Goodfellow and other researchers at the University of Montreal, including Yoshua Bengio, in 2014. VAE-GAN, introduced by Larsen et al., is also used in this project.
+
+There are two parts in this project: CelebA Face Generation and VAEGANIME.
+
+
+
+
+# CelebA Face Generation - VAE
+
+# Rationale
+When dealing with images, we usually use convolutional network. Convolutional autoencoders can extract and learn the characteristics of the images in the dataset. A convolution in the general continue case is defined as the integral of the product of two functions (signals) after one is reversed and shifted:
+In the image domain where the signals are finite, this formula becomes:
+
+
+# Methods
+We train our VAE and DCGAN model on CelebA (CelebFaces Attributes Dataset). CelebA is a huge dataset with big diversities which contains “10177 number of
+ 
+identities, 202,599 number of face images, and 5 landmark locations, 40 binary attributes annotations per image”. (cited from above) We use the preprocessed data which is composed of face images in JPEG format.
+
+We first load the data in list_attr_celeba.txt into a Pandas data frame. The attribute data contains the characteristics of the faces, which is the basis of the training. Then we load the images in img_align_celeba into x_train, y_train, x_test, and y_test.
+
+In the directory, there are 202599 pictures of different celebrities. In this experiment, we use a subset with a size of 20000 of the original data set.We randomly choose 20000 picture and load them with PIL.Image to load the image into a nparray with a shape of (20000, 218, 178, 3).
+
+Each picture is described with a 40-dimenional vector, each dimension represents an attribute, if the corresponding dimension matches the picture, the label is 1, otherwise, it is -1. In the experiment, we load the attribute file into a pandas.DataFrame, with 202599 rows and 40 columns.
+
+
+
+We build an encoder and a decoder, and assemble them to get a VAE (Variational Auto-Encoder). Both the encoder and the decoder are simple CNNs, consisting of Convolutional Layer, Dense Layer, Reshape Layer, and so on.
